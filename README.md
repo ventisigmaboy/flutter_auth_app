@@ -18,11 +18,11 @@ Here are a few screenshots from the app:
 
 ### Login Screen
 
-<img src="https://github.com/user-attachments/assets/15ad2128-a29f-4db3-b94a-43e7d200259f" width="300" height="500"/>
+<img src="https://github.com/user-attachments/assets/15ad2128-a29f-4db3-b94a-43e7d200259f" width="300"/>
 
 ### Signup Screen
 
-<img src="https://github.com/user-attachments/assets/7cfc4eaa-48fc-4cbc-a8ce-0ae288792837" width="300" height="500"/>
+<img src="https://github.com/user-attachments/assets/7cfc4eaa-48fc-4cbc-a8ce-0ae288792837" width="300"/>
 
 
 ---
