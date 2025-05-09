@@ -31,7 +31,8 @@ Here are a few screenshots from the app:
 
 Want to see it in action?
 
-![App Demo](https://your-demo-gif-link-here) <!-- Replace with actual GIF link -->
+<img src="https://github.com/user-attachments/assets/6c4ae058-0dec-4ac2-9250-3f297a9944dc" width="400"/>
+<img src="https://github.com/user-attachments/assets/f9cf4331-1a91-4023-b918-fac51de760e6" width="400"/>
 
 ---
 
