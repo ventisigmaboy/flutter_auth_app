@@ -28,10 +28,6 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       darkTheme: ThemeData.dark(),
       home: AuthWrapper(),
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
     );
   }
 }
