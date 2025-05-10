@@ -25,7 +25,13 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Auth App',
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.system,
+      darkTheme: ThemeData.dark(),
       home: AuthWrapper(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
     );
   }
 }
