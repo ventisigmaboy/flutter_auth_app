@@ -52,7 +52,6 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
         ),
-        Spacer(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: child ?? const SizedBox(),

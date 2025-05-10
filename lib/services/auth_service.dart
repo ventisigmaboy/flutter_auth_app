@@ -98,6 +98,51 @@ class AuthService extends GetxService {
     await auth.signOut();
   }
 
+  Future<void> updateProfile({
+    required String name,
+    required String email,
+    String? photoUrl,
+  }) async {
+    try {
+      final user = auth.currentUser;
+      if (user == null) throw "No user logged in";
+
+      // Update Auth profile
+      await user.updateDisplayName(name);
+      if (email != user.email) {
+        await user.verifyBeforeUpdateEmail(email);
+      }
+      if (photoUrl != null) {
+        await user.updatePhotoURL(photoUrl);
+      }
+
+      // Update Firestore
+      await _firestore.collection('users').doc(user.uid).update({
+        'name': name,
+        'email': email,
+        if (photoUrl != null) 'photoUrl': photoUrl,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+    } on FirebaseAuthException catch (e) {
+      throw _parseAuthError(e);
+    } catch (e) {
+      throw "Profile update failed: ${e.toString()}";
+    }
+  }
+
+  String _parseAuthError(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'requires-recent-login':
+        return 'Please re-login to update email';
+      case 'email-already-in-use':
+        return 'Email already in use';
+      case 'invalid-email':
+        return 'Invalid email format';
+      default:
+        return e.message ?? 'Profile update failed';
+    }
+  }
+
   // Future<void> deleteAccount(String currentPassword) async {
   //   try {
   //     final user = auth.currentUser;

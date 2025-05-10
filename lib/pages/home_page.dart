@@ -1,9 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auth_app/components/custom_drawer.dart';
 import 'package:auth_app/models/user_model.dart';
+import 'package:auth_app/pages/edit_profile_page.dart';
 import 'package:auth_app/pages/login_page.dart';
 import 'package:auth_app/services/auth_service.dart';
 import 'package:auth_app/services/user_repo.dart';
+import 'package:auth_app/widgets/custom_text_form_field.dart';
 import 'package:auth_app/widgets/drawer_tile.dart';
 import 'package:auth_app/widgets/user_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -105,15 +107,20 @@ class _HomePageState extends State<HomePage> {
           'Confirm Deletion',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
-        content: TextField(
+        // content: TextField(
+        //   controller: _passwordController,
+        //   obscureText: true,
+        //   decoration: InputDecoration(
+        //     contentPadding: EdgeInsets.all(10),
+        //     labelText: 'Enter your password',
+        //     labelStyle: TextStyle(fontSize: 14),
+        //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        //   ),
+        // ),
+        content: CustomFormField(
+          isVisible: false,
+          hintText: 'Password',
           controller: _passwordController,
-          obscureText: true,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(10),
-            labelText: 'Enter your password',
-            labelStyle: TextStyle(fontSize: 14),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-          ),
         ),
         actions: [
           TextButton(onPressed: () => Get.back(), child: const Text('Cancel')),
@@ -211,12 +218,12 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 DrawerTile(
-                  title: 'Delete Account',
-                  icon: 'assets/images/delete.svg',
-                  onTap: _deleteAccount,
-                  txtColor: Colors.red,
-                  iconColor: Colors.red,
-                  bgColor: Colors.red.withAlpha(20),
+                  title: 'Edit Profile',
+                  icon: 'assets/icons/edit.svg',
+                  onTap: () => Get.to(() => EditProfilePage()),
+                  txtColor: Colors.black,
+                  iconColor: Colors.black,
+                  bgColor: Colors.grey.withAlpha(20),
                 ),
                 DrawerTile(
                   title: 'Sign Out',
@@ -225,6 +232,14 @@ class _HomePageState extends State<HomePage> {
                   txtColor: Colors.black,
                   iconColor: Colors.black,
                   bgColor: Colors.grey.withAlpha(20),
+                ),
+                DrawerTile(
+                  title: 'Delete Account',
+                  icon: 'assets/images/delete.svg',
+                  onTap: _deleteAccount,
+                  txtColor: Colors.red,
+                  iconColor: Colors.red,
+                  bgColor: Colors.red.withAlpha(20),
                 ),
               ],
             ),
