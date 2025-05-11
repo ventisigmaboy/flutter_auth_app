@@ -5,11 +5,11 @@ on:
 
 jobs:
   build-ios:
-    name: 📦 Build iOS IPA for TrollStore
+    name: 📦 Build iOS IPA
     runs-on: macos-latest
 
     steps:
-      - name: 🔄 Checkout repo
+      - name: 🔄 Checkout code
         uses: actions/checkout@v3
 
       - name: 🛠️ Setup Flutter
@@ -21,8 +21,8 @@ jobs:
       - name: 📦 Get Flutter dependencies
         run: flutter pub get
 
-      - name: 🔧 Update CocoaPods
-        run: pod repo update
+      - name: 🔧 Install CocoaPods dependencies
+        run: pod install
         working-directory: ios
 
       - name: 🚀 Build iOS (no code signing)
@@ -37,14 +37,14 @@ jobs:
         working-directory: build/ios/iphoneos
 
       - name: 📦 Create IPA file
-        run: zip -r FlutterAuthApp.ipa Payload
+        run: zip -r FlutterApp.ipa Payload
         working-directory: build/ios/iphoneos
 
-      - name: ☁️ Upload IPA to release
+      - name: ☁️ Upload IPA to GitHub release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/ios/iphoneos/FlutterAuthApp.ipa
+          file: build/ios/iphoneos/FlutterApp.ipa
           tag: v1.0
           overwrite: true
-          body: "Unsigned .ipa for TrollStore installation"
+          body: "Unsigned .ipa for manual install"
